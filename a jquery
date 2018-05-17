@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang='en'>
+    <head>
+        <title></title>
+        <meta charset='UTF-8'>
+        <script src='script.js'></script>
+    </head>
+    <style>
+        body{
+            margin:0;
+        }
+        .box{
+            position:relative;
+            width:500px;
+            height:300px;
+            margin:150px auto;
+            box-shadow:0 0 10px 1px #333;
+        }
+        .box img{
+            position:absolute;
+            width:500px;
+            height:300px;
+        }
+        button{
+            position:absolute;
+            top:275px;
+            font-size:40px;
+            color:white;
+            background-color: black;
+            outline: none;
+        }
+        button:nth-of-type(1){
+            right:423px;
+        }
+        button:nth-of-type(2){
+            left:423px;
+        }
+        button:hover{
+            color:black;
+            background-color:white;
+            cursor:pointer; 
+        }
+        i{
+            position:absolute;
+            top:400px;
+            right:540px;
+            width:40px;
+            height:20px;
+            line-height:20px;
+            text-align:center;
+            background-color:white;
+        }
+        i:nth-of-type(2){
+            right:490px;
+        }
+        i:nth-of-type(1){
+            right:440px;
+        }
+        .active{
+            color:white;
+            background-color:black;
+        }
+    </style>
+    <body>
+        <div class='box'>
+            <img src='images/1.jpg'>
+            <img src='images/2.jpg'>
+            <img src='images/3.jpg'>
+        </div>
+        <button>></button>
+        <button><</button>
+        <i>1</i>
+        <i>2</i>
+        <i class='active'>3</i>
+        <script>
+            var i = 2;
+            $('button:eq(0)').click(function(){
+                if(i == 0){return;};
+                --i;
+                $('img:eq('+i+')').fadeIn(750).siblings().fadeOut();
+                $('i:eq('+i+')').addClass('active').siblings().removeClass('active');
+            });
+            $('button:eq(1)').click(function(){
+                if(i == 2){return;};
+                ++i;
+                $('img:eq('+i+')').fadeIn(750).siblings().fadeOut();
+                $('i:eq('+i+')').addClass('active').siblings().removeClass('active');
+            });
+            $('i').click(function(){
+                i = $(this).html()-1;
+                $(this).addClass('active').siblings().removeClass('active');
+                $('img:eq('+i+')').fadeIn(750).siblings().fadeOut();
+            });
+        </script>
+    </body>
+</html>
